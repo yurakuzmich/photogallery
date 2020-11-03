@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.photo {
+margin-bottom: 20px;
+}
+
+.photo img {
+    max-width: 600px;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.thumb {
+max-width: 198px;
+flex-basis: 140px;
+/* margin-right: 20px; */
+margin-bottom: 20px;
+}
+
+.thumb img {
+    width: 100%;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.thumb img:hover {
+    opacity: 1;
+}
+
+    </style>
+    <title>Picture Gallery by Yury Kuzmich</title>
+  </head>
+  <body>
+    <div class="wrapper">
+        <div class="about">
+            <p>
+                Фотогалерея с заменой картинок. Большая картинка меняется местом с маленькой, по которой кликнули
+            </p>
+        </div>
+      <div class="photo">
+        <img src="./images/1.jpg" alt="" class="photo__img" />
+      </div>
+      <div class="thumbnails">
+        <div class="thumb">
+          <img src="./images/2.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/3.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/4.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/5.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/6.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/7.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/8.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/9.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/10.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/11.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/12.jpg" alt="" class="thumb__img"/>
+        </div>
+        <div class="thumb">
+          <img src="./images/13.jpg" alt="" class="thumb__img"/>
+        </div>
+      </div>
+    </div>
+    <script>
+        document.addEventListener('click', documentHandler);
+
+function documentHandler(e) {
+    if(e.target.classList.contains('thumb__img')) {
+        swapImages(e);
+    }
+}
+
+function swapImages(e) {
+    let imageToSwapName = getImgName(e.target.src);
+    let swappedImage =  document.querySelector('.photo__img');
+    
+    let swappedImageName = getImgName(swappedImage.src);
+    swappedImage.src = './images/' + imageToSwapName;
+    e.target.src = './images/' + swappedImageName;
+};
+
+function getImgName(str) {
+    let position = str.lastIndexOf('/') + 1;
+    return str.slice(position);
+}
+    </script>
+  </body>
+</html>
